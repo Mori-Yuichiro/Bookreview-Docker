@@ -1,8 +1,11 @@
-
 .toppage{
     background-image: url("hondana.png");
     background-repeat: no-repeat;
-    padding: 100px 100px;
     color: white;
+    margin-top: -25px;
+    background-size: cover;
 }
 
+.center{
+    text-align: center;
+}
