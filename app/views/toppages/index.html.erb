@@ -1,10 +1,13 @@
-<div class="center jumbotron toppage">
-    <div class="text-center">
-          <h1>みんなで本を共有しよう！</h1> 
-          <p>hihihihihihii</p>
-    </div>
-</div>
-
-<div class="center">
-    <%= link_to 'Sign up!', signup_path, class: 'btn btn-lg btn-warning'%>
-</div>
+<% if logged_in? %>
+    <p><%= current_user.name %></p>
+    <% else %>
+        <div class="center jumbotron toppage">
+            <div class="text-center">
+                  <h1>みんなで本を共有しよう！</h1> 
+            </div>
+        </div>
+        
+        <div class="center">
+            <%= link_to 'Sign up!', signup_path, class: 'btn btn-lg btn-warning'%>
+        </div>
+<% end %>
