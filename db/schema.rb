@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_050757) do
+ActiveRecord::Schema.define(version: 2019_08_30_063314) do
+
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "review"
+    t.string "image_url"
+    t.bigint "user_id"
+    t.bigint "kind_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind_id"], name: "index_books_on_kind_id"
+    t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "kinds", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -20,4 +39,6 @@ ActiveRecord::Schema.define(version: 2019_08_28_050757) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books", "kinds"
+  add_foreign_key "books", "users"
 end

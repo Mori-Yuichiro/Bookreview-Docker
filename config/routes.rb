@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
+  #投稿
+  resources :books, only: [:new, :create, :edit, :destroy]
+  get 'books/newer', to: 'books#newer'
 end
+
+#次、投稿

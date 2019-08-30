@@ -9,17 +9,17 @@
       <ul class="navbar-nav">
         <% if logged_in? %>
           <font face="Comic Sans MS">
-            <li class="nav-item active"><%= link_to '新規投稿', signup_path, class: 'nav-link' %></li>
+            <li class="nav-item active"><%= link_to '新規投稿', new_book_path, class: 'nav-link' %></li>
           </font>
           <font face="Comic Sans MS">
             <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
-              <li class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
-            </ul>
-          </li>
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-item"><%= link_to 'My page', user_path(current_user) %></li>
+                <li class="dropdown-divider"></li>
+                <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+              </ul>
+            </li>
           </font>
         <% else %>
           <font face="Comic Sans MS">
