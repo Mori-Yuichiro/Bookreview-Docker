@@ -1,5 +1,8 @@
 <% if logged_in? %>
-    <%= render 'layouts/books-post', books: @books %>
+    <div class="row">
+        <%= render 'layouts/books_side', books: @books %>
+        <%= render 'layouts/books-post', books: @books %>
+    </div>
     
 <% else %>
     <div class="center jumbotron toppage">

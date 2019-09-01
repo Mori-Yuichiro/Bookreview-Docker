@@ -8,4 +8,24 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :books
+    has_many :goods
+    has_many :goodings, through: :goods, source: :book
+    has_many :reverses_of_good, class_name: 'Good', foreign_key: 'book_id'
+    has_many :gooders, through: :reverses_of_good, source: :user
+    
+    def good(other_book)
+       unless self == other_book
+            self.goods.find_or_create_by(book_id: other_book.id)
+       end
+    end
+    
+    def ungood(other_book)
+       good = self.goods.find_by(book_id: other_book.id)
+       good.destroy if good
+    end
+    
+    def gooding?(other_book)
+       self.goodings.include?(other_book) 
+    end
 end
+

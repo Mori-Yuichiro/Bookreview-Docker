@@ -1,5 +1,28 @@
 <div class="row">
-    <div class="col-sm-6 offet-sm-3">
-        <p><%= @user.name %></p>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="card text-center">
+          <div class="card-header">
+            新着順、いいね順、ジャンル
+          </div>
+          <% @books.each do |book| %>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div>
+                        <%= link_to book.user.name, user_path(book.user) %>
+                    </div>
+                    <div>
+                        作者 : <%= book.title%>,
+                    タイトル : <%= book.author %>,
+                    ジャンル : <%= book.kind.name %>
+                    </div>
+                    <div>
+                    レビュー : <%= book.review %>
+                    <%= render 'goods/good_button', book: book %>
+                    </div>
+                    <%= link_to '削除', @book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: 'btn btn-warning btn-sm' %>
+                </li>
+              </ul>
+          <% end %>
+        </div>
     </div>
 </div>

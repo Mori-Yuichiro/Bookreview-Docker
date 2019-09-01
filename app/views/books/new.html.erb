@@ -1,2 +1,45 @@
-<h1>Books#new</h1>
-<p>Find me in app/views/books/new.html.erb</p>
+<div class="row">
+    <div class="col-sm-4">
+        <%= form_with(model: @book, local: true) do |f| %>
+            <div>
+                <%= f.label :author, '作者' %>
+            </div>
+            
+            <br>
+            <br>
+            
+            <div>
+                <%= f.label :review, 'ジャンル' %>
+            </div>
+            
+            <br>
+            <br>
+            
+            <div>
+                <%= f.label :kind_id, 'レビュー' %>
+            </div>
+    </div>
+    
+    <div class="col-sm-8">
+            <div class="form-group">
+                <%= f.text_field :author, class: 'form-controll' %>
+            </div>
+            
+            <br>
+            
+            <div class="form-group">
+                <%= select_tag 'books[kind_id]', options_from_collection_for_select(@kinds, :id, :name), class: 'form-controll' %>
+            </div>
+
+            <br>
+            
+            <div class="form-group">
+                <%= f.text_area :review, class: 'form-controll pr-4 pb-5' %>
+            </div>
+            
+            <br>
+            
+            <%= f.submit '投稿', class: 'btn btn-lg btn-warning' %>
+        <% end %>
+    </div>
+</div>

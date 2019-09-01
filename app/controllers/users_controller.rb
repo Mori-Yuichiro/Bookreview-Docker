@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show]
+  before_action :require_user_logged_in, only: [:show, :goodings]
   
   
   def show
     @user = User.find(params[:id])
+    @books = @user.books.order(id: :desc).page(params[:page])
   end
   
   def new
@@ -23,6 +24,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    @book = current_user.books.find_by(id: params[:id])
+    @book.destroy
+    flash[:success] = 'レビューを削除しました。'
+    redirect_back(fallback_location: root_path)
+  end
   
   private
   

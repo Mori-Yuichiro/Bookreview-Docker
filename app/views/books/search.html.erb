@@ -1,2 +1,27 @@
-<h1>Books#search</h1>
-<p>Find me in app/views/books/search.html.erb</p>
+<div class="row">
+    <div class="col-sm-4">
+        <p>タイトル</p>
+    </div>
+    
+    <div class="col-sm-8">
+        <%= form_with(model: @book, local: true) do |f| %>
+            <%= f.text_field :title, class: 'form-controll mb-4' %>
+            
+            <div>
+                <%= f.submit '検索', class: 'btn btn-lg btn-warning ml-5'%>
+            </div>
+        <% end %>
+        
+        <% if @books %>
+            <% @books.each do |book|%>
+                <img src="<%= @book.image_url %>" alt="">
+                <p><%= book.title %></p>
+                
+                <%= form_with url: books_path do |f| %>
+                    <%= hidden_field_tag :isbn, @book.isbn %>
+                    <%= f.submit '保存', class: 'btn btn-lg btn-warning' %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+</div>

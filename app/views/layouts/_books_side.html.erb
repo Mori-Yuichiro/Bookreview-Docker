@@ -1,8 +1,13 @@
 <aside class="col-sm-4">
-    <div class="card" style="width: 10rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"></li>
-            <li class="list-group-item"></li>
-          </ul>
+    <div class="card text-center" style="width: 10rem;">
+        <% books.each do |book| %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= book.author %></li>
+             </ul>
+        <% end %>
+    </div>
+    <br>
+    <div class="card text-center" style="width: 10rem;">
+        <%= link_to '新規投稿', books_search_path %>
     </div>
 </aside>
