@@ -1,0 +1,22 @@
+<div class="row">
+    <% if @books %>
+        <% @books.each do |book|%>
+            <div class="col-sm-4 offset-sm-3">
+                <%= form_with(model: book, url:  books_new_path, local: true) do |f| %>
+                    <%= hidden_field_tag :isbn, book.isbn %>
+                    <%= f.submit "この本のレビューを書く", class:"btn btn-sm btn-primary" %>
+                <% end %>
+            </div>
+            
+            <div class="col-sm-5">
+                <div class="col-3">
+                    <%= image_tag book.image_url, class:"img-fluid" %>
+                </div>
+                <p><%= book.title %></p>
+            </div>
+        <% end %>
+    <% end %>
+</div>
+
+<br>
+    

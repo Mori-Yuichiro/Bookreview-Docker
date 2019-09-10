@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   #Signup
   get 'signup', to: 'users#new'
-  resources :users, only: [:show, :new, :create, :destroy] do
+  resources :users, only: [:show, :new, :create] do
     member do
      get :goodings
     end
@@ -17,10 +17,18 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   #投稿
-  resources :books, only: [:new, :create, :edit]
+  resources :books, only: [:new, :create, :edit, :destroy] do
+    collection do
+      get :search
+    end
+  end
+  post 'books/index', to: 'books#index'
+  post 'books/new', to: 'books#new'
+  post 'books/create', to: 'books#create'
+  get 'books/good', to: 'books#good'
   get 'books/newer', to: 'books#newer'
-  get 'books/search', to: 'books#search'
-  post 'books/search', to: 'books#search_create'
+  
+  get 'kinds/:id', to: 'kinds#show'
   
   resources :goods, only: [:create, :destroy]
 end

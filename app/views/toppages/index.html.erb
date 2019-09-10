@@ -1,13 +1,20 @@
 <% if logged_in? %>
     <div class="row">
-        <%= render 'layouts/books_side', books: @books %>
-        <%= render 'layouts/books-post', books: @books %>
+        <aside style="position: fixed;">
+            <%= render 'layouts/books_side', books: @books %>
+        </aside>
+        
+        <div class="col-sm-9 offset-sm-3">
+            <%= render 'layouts/books-post', books: @books %>
+        </div>
     </div>
     
 <% else %>
     <div class="center jumbotron toppage">
         <div class="text-center">
               <h1>みんなで本を共有しよう！</h1> 
+              <p>このサイトでは、あなたの好きな本を投稿し、また別のユーザーの投稿を閲覧することができます。</p>
+              <p>みんなで思い出の一冊を投稿しよう。</p>
         </div>
     </div>
         
