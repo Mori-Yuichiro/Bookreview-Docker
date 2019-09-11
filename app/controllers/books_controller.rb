@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :require_user_logged_in, only: [:newer, :good]
   before_action :correct_user, only: [:edit, :destroy]
+  before_action :kinds, only: [:search, :index, :new, :newer, :good]
   
   
   #楽天APIでの検索
@@ -10,7 +11,6 @@ class BooksController < ApplicationController
     
   def index  
     @book = current_user.books.build
-    @kinds = Kind.all
     
     @books = []
     
@@ -33,7 +33,6 @@ class BooksController < ApplicationController
   
   
   def new
-
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
     unless @book.persisted?      #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
       results = RakutenWebService::Books::Book.search({isbn: @book.isbn})
@@ -80,18 +79,20 @@ class BooksController < ApplicationController
   
   def newer
     @books = Book.order(id: :desc)
-    @kinds = Kind.all
   end
   
   def good
     @goods = current_user.goodings.order(id: :desc)
-    @kinds = Kind.all
   end
   
   
   
   private
   
+  
+  def kinds
+    @kinds = Kind.all
+  end
   
   def read(result)
     title = result['title']
@@ -106,7 +107,6 @@ class BooksController < ApplicationController
       image_url: image_url,
     }
   end
-  
   
   def correct_user
     @book = current_user.books.find_by(id: params[:id])

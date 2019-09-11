@@ -4,8 +4,15 @@
             <%= render 'layouts/books_side', books: @books %>
         </aside>
         
-        <div class="col-sm-9 offset-sm-3">
-            <%= render 'layouts/books-post', books: @books %>
+        <div class="col-sm-8 offset-4">
+            <div class="col-sm-8">
+                <div class="card text-center">
+                     <div class="card-header">
+                         <h3>Home</h3>
+                     </div>
+                    　<%= render 'layouts/books-post', books: @books %>
+                </div>
+            </div>
         </div>
     </div>
     

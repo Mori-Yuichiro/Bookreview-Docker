@@ -1,9 +1,13 @@
 <div class="card text-center" style="width: 10rem;">
-    <% books.each do |book| %>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><%= book.author %></li>
-        </ul>
-    <% end %>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <% books.each do |book| %>
+                <div>
+                    <%= book.author %>
+                </div>
+            <% end %>
+        </li>
+    </ul>
 </div>
 <br>
 <div class="card text-center" style="width: 10rem;">
