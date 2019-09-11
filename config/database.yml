@@ -53,5 +53,5 @@ production:
   pool: 5
   database: book-review_production
   username: book-review
-  password: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
+  password: <%= ENV['BOOK-REVIEW_DATABASE_PASSWORD'] %>
   
