@@ -1,24 +1,13 @@
-# README
+##BookReview
+アプリ名　BookReview(製作中)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##概要
+本のレビュー投稿アプリです。ユーザー登録、ログイン、レビュー投稿、投稿の閲覧、投稿に対するいいね機能が付いています。
+##開発環境
+Cloud9
+言語　Ruby 2.5.3
+フレームワーク　Ruby on rails 5.2.2
+DB MySQL 5.5.62
+##本番環境
+　言語、フレームワークは同上
+　DB PostgreSQL
