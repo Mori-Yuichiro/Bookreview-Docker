@@ -5,9 +5,8 @@
                 <%= image_tag book.image_url, class: 'img-fluid' %>
             </div>
             
-            <div class="offset-4">
+            <div>
                 <%= link_to book.user.name, user_path(book.user), class: 'mr-2'  %>
-                <%= book.updated_at %>
             </div>
     
             <div>
@@ -26,7 +25,7 @@
                 レビュー : <%= book.review %>
             </div>
                             
-            <div class="offset-4" style=" display: flex;">
+            <div class="good_button offset-4">
                 <div class="mr-2">    
                     <%= render 'goods/good_button', book: book %>
                 </div>

@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="col-sm-4 offset-sm-3 pl-5">
-        <%= form_with(model: @book, local: true,  url:  books_create_path) do |f| %>
+<div class="row new">
+    <div class="col-4 offset-3 pl-5">
+        <%= form_with(model: @book1, local: true,  url:  books_create_path) do |f| %>
             <div class="mb-3">
                 <%= f.label :title, 'タイトル' %>
             </div>
@@ -19,9 +19,9 @@
             <div>
                 <%= f.label :review, 'レビュー' %>
             </div>
-    </div>
-    
-    <div class="col-sm-5">
+        </div>
+            
+        <div class="col-5">
             <div class="form-group">
                 <%= f.text_field :title, class: 'form-controll' %>
             </div>
@@ -40,8 +40,11 @@
             <div class="form-group">
                 <%= f.text_area :review, class: 'form-controll pr-4 pb-5', rows: 5 %>
             </div>
-            <%= hidden_field_tag :isbn, @book.isbn %>
-            <%= f.submit '投稿', class: 'btn btn-lg btn-warning' %>
+            
+            <div>
+                <%= hidden_field_tag :isbn, @book1.isbn %>
+                <%= f.submit '投稿', class: 'btn btn-lg btn-warning' %>
+            </div>
         <% end %>
     </div>
 </div>

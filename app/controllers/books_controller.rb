@@ -33,16 +33,16 @@ class BooksController < ApplicationController
   
   
   def new
-    @book = Book.find_or_initialize_by(isbn: params[:isbn])
-    unless @book.persisted?      #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
-      results = RakutenWebService::Books::Book.search({isbn: @book.isbn})
-      
-      @book = Book.new(read(results.first))
-      Rails.logger.info(@book2)
-      
-    end
-
+    @book1 = current_user.books.find_or_initialize_by(isbn: params[:isbn])
     
+    unless @book1.persisted?      #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
+      results = RakutenWebService::Books::Book.search({isbn: @book1.isbn})
+      
+      @book1 = Book.new(read(results.first))
+    else
+      flash.now[:danger] = 'すでにレビューを投稿済みです。'
+      render 'books/search'
+    end
   end
   
   def create
@@ -67,10 +67,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-    @book = Book.find(params[:id])
-  end
-  
   def destroy
     @book.destroy
     flash[:success] = 'レビューを削除しました。'
@@ -98,7 +94,7 @@ class BooksController < ApplicationController
     title = result['title']
     author = result['author']
     isbn = result['isbn']
-    image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '')
+    image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '') #gsub(A,B) : 文字列置換。Aに置換前の文字列、Bに置換後の文字列
     
     {
       title: title,

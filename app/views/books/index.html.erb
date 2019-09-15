@@ -3,7 +3,7 @@
         <% @books.each do |book|%>
              <div class="col-sm-5 offset-sm-3">
                 <div class="col-3">
-                    <%= image_tag book.image_url, class:"img-fluid" %>
+                    <%= image_tag book.image_url, class:"img-fluid", alt: '本の画像' %>
                 </div>
                 <p><%= book.title %></p>
             </div>

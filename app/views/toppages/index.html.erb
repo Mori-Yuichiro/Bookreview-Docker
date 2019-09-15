@@ -1,17 +1,15 @@
 <% if logged_in? %>
     <div class="row">
-        <aside style="position: fixed;">
-            <%= render 'layouts/books_side', books: @books %>
-        </aside>
+        <div class="left col-4">
+            <%= pie_chart @chart %>
+        </div>
         
-        <div class="col-sm-8 offset-4">
-            <div class="col-sm-8">
-                <div class="card text-center">
-                     <div class="card-header">
-                         <h3>Home</h3>
-                     </div>
-                    　<%= render 'layouts/books-post', books: @books %>
-                </div>
+        <div class="col-6 offset-6">
+            <div class="card text-center">
+                 <div class="card-header">
+                     <h3>Home</h3>
+                 </div>
+            　<%= render 'layouts/books-post', books: @books %>
             </div>
         </div>
     </div>
@@ -29,3 +27,4 @@
         <%= link_to 'Sign up!', signup_path, class: 'btn btn-lg btn-warning'%>
     </div>
 <% end %>
+

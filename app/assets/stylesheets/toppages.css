@@ -8,3 +8,20 @@
 .center{
     text-align: center;
 }
+
+.left{
+    position: fixed;
+}
+
+.newpost{
+     width: 10rem;
+}
+
+.list{
+    color: white;
+}
+
+
+.good_button{
+    display: flex;
+}
