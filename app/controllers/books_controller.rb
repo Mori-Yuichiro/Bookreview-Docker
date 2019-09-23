@@ -3,6 +3,8 @@ class BooksController < ApplicationController
   before_action :correct_user, only: [:edit, :destroy]
   before_action :kinds, only: [:search, :index, :new, :newer, :good]
   
+  include ChangeIsbnHelper
+  
   
   #楽天APIでの検索
   def search
@@ -57,6 +59,8 @@ class BooksController < ApplicationController
       @book2.user_id = current_user.id
       @book2.kind_id = params[:book][:kind_id]
       @book2.review = params[:book][:review]
+      @book2.isbn = change_isbn(params[:isbn])
+      
       if @book2.save
         flash[:success] = 'レビューを投稿しました。'
         redirect_to root_url
@@ -79,6 +83,17 @@ class BooksController < ApplicationController
   
   def good
     @goods = current_user.goodings.order(id: :desc)
+    
+    #グラフ描画のためのハッシュ作成
+    chart = {}
+    good_books = current_user.goodings
+    for num in (1..5) do
+      kind = Kind.find_by(id: num)
+      good_kind = good_books.where(kind_id: num)
+      good_count = good_kind.count
+      
+      @chart = chart.merge!(kind.name => good_count)
+    end
   end
   
   
@@ -90,17 +105,21 @@ class BooksController < ApplicationController
     @kinds = Kind.all
   end
   
+  
+  
   def read(result)
     title = result['title']
     author = result['author']
     isbn = result['isbn']
     image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '') #gsub(A,B) : 文字列置換。Aに置換前の文字列、Bに置換後の文字列
+    itemUrl = result['itemUrl']
     
     {
       title: title,
       author: author,
       isbn: isbn,
       image_url: image_url,
+      itemUrl: itemUrl,
     }
   end
   

@@ -1,41 +1,51 @@
 <ul class="list-group list-group-flush">
     <% books.each do |book| %>
         <li class="list-group-item">
-            <div class="col-4 offset-4">
-                <%= image_tag book.image_url, class: 'img-fluid' %>
+            <div class="list-item-image">
+                <%= image_tag book.image_url, class: 'imagefit' %>
             </div>
             
             <div>
                 <%= link_to book.user.name, user_path(book.user), class: 'mr-2'  %>
             </div>
     
-            <div>
-                タイトル : <%= book.title %>
-            </div>
-                            
-            <div>
-                著者 : <%= book.author %>
-            </div>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td class="w-tablehead">タイトル </td><td> <%= book.title %></td>
+                </tr>
                                 
-            <div>
-                ジャンル : <%= book.kind.name %>
-            </div>
-                            
-            <div>
-                レビュー : <%= book.review %>
-            </div>
-                            
-            <div class="good_button offset-4">
-                <div class="mr-2">    
+                <tr>
+                    <td class="w-tablehead">著者 </td><td> <%= book.author %></td>
+                </tr>
+                                    
+                <tr>
+                    <td class="w-tablehead">ジャンル </td><td> <%= book.kind.name %></td>
+                </tr>
+                                
+                <tr>
+                    <td class="w-tablehead">レビュー  </td><td><%= book.review %></td>
+                </tr>
+            </table>
+            
+            <ul class="good_button justify-content-center">
+                <li class="button">    
                     <%= render 'goods/good_button', book: book %>
-                </div>
-                                
-                <div class="mr-2">
+                </li>
+                
+                <li class="button">
                     <% if current_user == book.user %>
-                        <%= link_to "削除", book, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                        <%= link_to "消", book, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
                     <% end %>
-                </div>
-            </div>
+                </li>
+                
+                <li class="button">
+                    <% if book.isbn.length == 10 %>
+                        <%= link_to "Amazon", "http://www.amazon.co.jp/dp/" + book.isbn, target: :blank, class: 'btn btn-warning' %>
+                    <% else%>
+                        <%= link_to "楽天", book.itemUrl, target: :blank, class: 'btn btn-warning' %>
+                    <% end %>
+                </li>
+            </ul>
         </li>
-     <% end %>
+    <% end %>
 </ul>

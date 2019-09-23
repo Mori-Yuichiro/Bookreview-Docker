@@ -13,9 +13,6 @@
     position: fixed;
 }
 
-.newpost{
-     width: 10rem;
-}
 
 .list{
     color: white;
@@ -23,5 +20,14 @@
 
 
 .good_button{
-    display: flex;
+    list-style: none;
+    margin-left: -40px;
+}
+
+.button{
+    margin-right: 5px;
+}
+
+.rank{
+    margin-top: 20px;
 }

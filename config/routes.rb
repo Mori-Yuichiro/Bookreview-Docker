@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   post 'books/new', to: 'books#new'
   post 'books/create', to: 'books#create'
   get 'books/good', to: 'books#good'
-  get 'books/newer', to: 'books#newer'
   
   get 'kinds/:id', to: 'kinds#show'
   

@@ -2,6 +2,16 @@
     <div class="row">
         <div class="left col-4">
             <%= pie_chart @chart %>
+            
+            <table class="rank table-striped table-bordered">
+                <% @all_ranks.each.with_index(1) do |book, i| %>
+                    <tr>
+                        <td class="w-tablehead">第<%= i %>位 </td><td> <%= book.title %></td>
+                    </tr>
+                <% end %>
+            </table>
+            
+            <p>いいねランキング</p>
         </div>
         
         <div class="col-6 offset-6">

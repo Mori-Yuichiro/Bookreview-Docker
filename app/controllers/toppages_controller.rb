@@ -1,4 +1,5 @@
 class ToppagesController < ApplicationController
+  
   def index
     if logged_in?
       @books = Book.all.order(id: :desc)
@@ -13,6 +14,9 @@ class ToppagesController < ApplicationController
         
         @chart = chart.merge!(kind.name => kind_count )
       end
+      
+      #いいねの数でランキング表示
+      @all_ranks = Book.find(Good.group(:book_id).order('count(book_id) desc').limit(3).pluck(:book_id))
     end
   end
 end

@@ -1,0 +1,36 @@
+#ISBN13をISBN10に変換
+    def change_isbn
+        @books = Book.all
+        
+        @books.each do |book|
+           @isbn_13 =  book.isbn
+           
+           #最初の3桁と最後の1桁を捨てる
+           @tejun_1 = @isbn_13[3..11]
+           
+           #手順1の9桁の数字にそれぞれ10から2までかける
+           @tejun_2 = @tejun_1[0].to_i * 10 + @tejun_1[1].to_i * 9 + @tejun_1[2].to_i * 8 + @tejun_1[3].to_i * 7 + @tejun_1[4].to_i * 6 + @tejun_1[5].to_i * 5 + @tejun_1[6].to_i * 4 + @tejun_1[7].to_i * 3 + @tejun_1[8].to_i * 2
+           
+           #手順2で求めた値を11で割った余りを求める
+           @tejun_3 = @tejun_2 % 11
+           
+           #手順3で求めた値を11から引く
+           @tejun_4 = 11 - @tejun_3
+           
+           #手順4の値が11なら0、10ならxに変換、それ以外ならそのまま
+           if @tejun_4 == 11
+              @tejun_5 = '0'
+           elsif @tejun_4 == 10
+              @tejun_5 = 'x'
+           else
+              @tejun_5 = @tejun_4.to_s
+           end
+           
+           #手順5で求めたものを、最初に求めた9桁の数字の末尾につける
+           @isbn_10 = @tejun_1 + @tejun_5
+           
+           book.isbn = @isbn_10
+           
+           book.save
+        end
+    end
