@@ -62,6 +62,7 @@ gem 'dotenv-rails'
 gem 'chartkick'
 gem 'chartable'
 
+gem 'rails_12factor', group: :production
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'

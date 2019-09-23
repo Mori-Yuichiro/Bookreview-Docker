@@ -23,8 +23,6 @@ class BooksController < ApplicationController
         hits: 10,
       })
       
-      #メンター追記
-      Rails.logger.info(@books)
       
       results.each do |result|
         book = Book.new(read(result))
