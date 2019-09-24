@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   #トップページ
   root to: 'toppages#index'
+  get 'toppages/about', to: 'toppages#about'
   
   #Signup
   get 'signup', to: 'users#new'

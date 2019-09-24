@@ -5,17 +5,18 @@
     background-size: cover;
 }
 
+
+.how{
+    color:red;
+}
+
 .imgfluid{
     object-fit: contain;
     height: 100px;
 }
 
-.center{
+.center, .post, .p-good{
     text-align: center;
-}
-
-.left{
-    position: fixed;
 }
 
 

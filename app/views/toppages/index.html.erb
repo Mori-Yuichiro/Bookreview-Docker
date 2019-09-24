@@ -1,8 +1,8 @@
 <% if logged_in? %>
-    <div class="row">
-        <div class="left col-4">
+    <div class="row flex">
+        <div class="col-sm-4">
             <%= pie_chart @chart %>
-            
+            <p class="post">投稿数</p>
             <table class="rank table-striped table-bordered">
                 <% @all_ranks.each.with_index(1) do |book, i| %>
                     <tr>
@@ -11,10 +11,10 @@
                 <% end %>
             </table>
             
-            <p>いいねランキング</p>
+            <p class="p-good">いいねランキング</p>
         </div>
         
-        <div class="col-6 offset-6">
+        <div class="col-sm-6 offset-sm-2">
             <div class="card text-center">
                  <div class="card-header">
                      <h3>Home</h3>
@@ -33,6 +33,10 @@
         
     <div class="center">
         <%= link_to 'Sign up!', signup_path, class: 'btn btn-lg btn-warning'%>
+    </div>
+    
+    <div class="center">
+        <%= link_to 'How to use', toppages_about_path %>
     </div>
 <% end %>
 

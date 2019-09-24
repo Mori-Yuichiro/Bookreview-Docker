@@ -64,7 +64,8 @@ class BooksController < ApplicationController
         redirect_to root_url
       else
         flash.now[:danger] = 'レビューの投稿に失敗しました。'
-        render 'books/new'
+        @kinds = Kind.all
+        render 'books/search'
       end
     end
   end

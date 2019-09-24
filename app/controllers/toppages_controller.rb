@@ -19,4 +19,7 @@ class ToppagesController < ApplicationController
       @all_ranks = Book.find(Good.group(:book_id).order('count(book_id) desc').limit(3).pluck(:book_id))
     end
   end
+  
+  def about
+  end
 end
