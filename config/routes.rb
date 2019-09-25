@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   #投稿
-  resources :books, only: [:new, :create, :edit, :destroy] do
+  resources :books, only: [:new,:destroy] do
     collection do
       get :search
     end
   end
-  post 'books/index', to: 'books#index'
-  post 'books/new', to: 'books#new'
+  post 'books/search', to: 'books#index'
+  get 'books/create', to: 'books#search'
   post 'books/create', to: 'books#create'
   get 'books/good', to: 'books#good'
   

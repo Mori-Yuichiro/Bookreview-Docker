@@ -23,7 +23,6 @@ class BooksController < ApplicationController
         hits: 10,
       })
       
-      
       results.each do |result|
         book = Book.new(read(result))
         @books << book 
@@ -35,13 +34,10 @@ class BooksController < ApplicationController
   def new
     @book1 = current_user.books.find_or_initialize_by(isbn: params[:isbn])
     
-    unless @book1.persisted?      #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
+    unless @book1.persisted?    #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
       results = RakutenWebService::Books::Book.search({isbn: @book1.isbn})
       
       @book1 = Book.new(read(results.first))
-    else
-      flash.now[:danger] = 'すでにレビューを投稿済みです。'
-      render 'books/search'
     end
   end
   
@@ -49,7 +45,7 @@ class BooksController < ApplicationController
     
     #その商品を検索し、保存されてなければBook.newを実行
     @book1 = current_user.books.find_or_initialize_by(isbn: params[:isbn])
-    unless @book1.persisted?      #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
+    unless @book1.persisted?     #persisted? : Active Record object がDB に保存済みかどうかを判定するメソッド
       results = RakutenWebService::Books::Book.search({isbn: @book1.isbn})
       
       @book2 = Book.new(read(results.first))
@@ -65,7 +61,7 @@ class BooksController < ApplicationController
       else
         flash.now[:danger] = 'レビューの投稿に失敗しました。'
         @kinds = Kind.all
-        render 'books/search'
+        render :new
       end
     end
   end
@@ -76,9 +72,6 @@ class BooksController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
-  def newer
-    @books = Book.order(id: :desc)
-  end
   
   def good
     @goods = current_user.goodings.order(id: :desc)
@@ -103,8 +96,6 @@ class BooksController < ApplicationController
   def kinds
     @kinds = Kind.all
   end
-  
-  
   
   def read(result)
     title = result['title']

@@ -39,11 +39,13 @@
                 </li>
                 
                 <li class="button">
-                    <% if book.isbn.length == 10 %>
-                        <%= link_to "Amazon", "http://www.amazon.co.jp/dp/" + book.isbn, target: :blank, class: 'btn btn-warning' %>
-                    <% else%>
-                        <%= link_to "楽天", book.itemUrl, target: :blank, class: 'btn btn-warning' %>
-                    <% end %>
+                    <% if book.isbn %><!--追加-->
+                        <% if book.isbn.length == 10 %>
+                            <%= link_to "Amazon", "http://www.amazon.co.jp/dp/" + book.isbn, target: :blank, class: 'btn btn-warning' %>
+                        <% else%>
+                            <%= link_to "楽天", book.itemUrl, target: :blank, class: 'btn btn-warning' %>
+                        <% end %>
+                    <% end %><!--追加-->
                 </li>
             </ul>
         </li>
