@@ -5,8 +5,8 @@
                 <%= f.label :title, 'タイトル' %>
             </div>
             <br>
-            <br>
-            <div class="mb-3">
+    
+            <div>
                 <%= f.label :author, '作者' %>
             </div>
             <br>
@@ -23,12 +23,12 @@
             
         <div class="col-5">
             <div>
-                <%= f.text_field :title, class: 'form-controll', :placeholder => '失敗後は記述不要' %>
+                <%= @book1.title %>
             </div>
             <br>
             <br>
             <div class="form-group">
-                <%= f.text_field :author, class: 'form-controll', :placeholder => '失敗後は記述不要' %>
+                <%= @book1.author %>
             </div>
             <br>
             <br>
@@ -38,13 +38,13 @@
             <br>
             <br>
             <div class="form-group">
-                <%= f.text_area :review, class: 'form-controll pr-4 pb-5', rows: 5 %>
+                <%= f.text_area :review, class: 'form-control pr-4 pb-5', rows: 5 %>
             </div>
             
             <div>
                 <%= hidden_field_tag :isbn, @book1.isbn %>
                 <%= hidden_field_tag :itemUrl, @book1.itemUrl %>
-                <%= f.submit '投稿', class: 'btn btn-lg btn-warning' %>
+                <%= f.submit '投稿', class: 'btn btn-lg btn-warning form-control' %>
             </div>
         <% end %>
     </div>
