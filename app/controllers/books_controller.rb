@@ -60,6 +60,8 @@ class BooksController < ApplicationController
         redirect_to root_url
       else
         flash.now[:danger] = 'レビューの投稿に失敗しました。'
+        @book1 = Book.new(read(results.first))
+        @book1.kind_id = params[:book][:kind_id]
         @kinds = Kind.all
         render :new
       end
