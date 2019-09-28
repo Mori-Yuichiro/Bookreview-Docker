@@ -1,22 +1,19 @@
 <div class="row new">
     <div class="col-4 offset-3 pl-5">
         <%= form_with(model: @book1, local: true,  url:  books_create_path) do |f| %>
-            <div class="mb-3">
+            <div>
                 <%= f.label :title, 'タイトル' %>
             </div>
-            <br>
     
-            <div>
+            <div class="newcon1">
                 <%= f.label :author, '作者' %>
             </div>
-            <br>
-            <br>
-            <div class="mb-3">
+            
+            <div class="newcon2">
                 <%= f.label :kind_id, 'ジャンル' %>
             </div>
-            <br>
-            <br>
-            <div>
+            
+            <div class="newcon3">
                 <%= f.label :review, 'レビュー' %>
             </div>
         </div>
@@ -25,19 +22,16 @@
             <div>
                 <%= @book1.title %>
             </div>
-            <br>
-            <br>
-            <div class="form-group">
+            
+            <div class="newcon4">
                 <%= @book1.author %>
             </div>
-            <br>
-            <br>
-            <div class="form-group">
+            
+            <div class="form-group newcon5">
                 <%= f.select :kind_id, Kind.all.map{ |kind| [kind.name, kind.id] }, class: 'select' %>
             </div>
-            <br>
-            <br>
-            <div class="form-group">
+            
+            <div class="form-group newcon6">
                 <%= f.text_area :review, class: 'form-control pr-4 pb-5', rows: 5 %>
             </div>
             
